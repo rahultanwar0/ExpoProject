@@ -1,11 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View,Image } from 'react-native';
 import { fakeServer } from './fakeServer';
 
 const renderItem = ({ item }) => {
   return (
-    <Text
+
+    <View>
+       <Image
+          source={require('./assets/favicon.png')}
+          style={{hight:50, width: 50}}
+        />
+
+        <Text
       style={{
         textAlign: 'center',
         fontWeight: 'bold',
@@ -17,6 +24,8 @@ const renderItem = ({ item }) => {
     >
       {item}
     </Text>
+    </View>
+  
   );
 };
 
