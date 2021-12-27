@@ -1,31 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
-import { FlatList, StyleSheet, Text, View,Image } from 'react-native';
-import { fakeServer } from './fakeServer';
+import { StatusBar } from "expo-status-bar";
+import React, { useEffect, useState } from "react";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
+import { fakeServer } from "./fakeServer";
 
 const renderItem = ({ item }) => {
   return (
-
     <View>
-       <Image
-          source={require('./assets/favicon.png')}
-          style={{hight:50, width: 50}}
-        />
+      <TouchableOpacity
+        onPress={() => {
 
-        <Text
-      style={{
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 20,
-        padding: 15,
-        borderBottomColor: 'red',
-        borderBottomWidth: 2,
-      }}
-    >
-      {item}
-    </Text>
+          alert(item);
+          console.log("hello");
+        }}
+      >
+        <Image
+          source={require("./assets/favicon.png")}
+          style={{ hight: 50, width: 50 }}
+        />
+      </TouchableOpacity>
+
+      <Text
+        style={{
+          textAlign: "center",
+          fontWeight: "bold",
+          fontSize: 20,
+          padding: 15,
+          borderBottomColor: "red",
+          borderBottomWidth: 2,
+        }}
+      >
+        {item}
+      </Text>
     </View>
-  
   );
 };
 
@@ -35,8 +49,8 @@ const ListFooterComponent = () => (
   <Text
     style={{
       fontSize: 16,
-      fontWeight: 'bold',
-      textAlign: 'center',
+      fontWeight: "bold",
+      textAlign: "center",
       padding: 5,
     }}
   >
@@ -61,7 +75,7 @@ export default function App() {
     setLoadingMore(true);
     if (!stopFetchMore) {
       const response = await fakeServer(20);
-      if (response === 'done') return setLoadingMore(false);
+      if (response === "done") return setLoadingMore(false);
       setData([...data, ...response]);
       stopFetchMore = true;
     }
@@ -71,7 +85,7 @@ export default function App() {
   return (
     <FlatList
       data={data}
-      keyExtractor={item => item}
+      keyExtractor={(item) => item}
       renderItem={renderItem}
       onEndReached={handleOnEndReached}
       onEndReachedThreshold={0.5}
@@ -86,8 +100,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
